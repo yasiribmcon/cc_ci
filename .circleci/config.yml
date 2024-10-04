@@ -10,8 +10,8 @@ jobs:
       _JAVA_OPTIONS: "-Xms512m -Xmx1g"
       DOCKER_CLI_EXPERIMENTAL: "enabled"
     working_directory: ~/workspace
-    docker:
-      - image: cimg/openjdk:11.0
+    machine:
+      image: ubuntu-2204:2024.05.1
     steps:
       - checkout
       - run: |
@@ -23,7 +23,7 @@ jobs:
            --name qemu-cross-<< parameters.platform >> \
            --mount type=bind,source=${PWD},target=/github_workspace \
            --workdir /github_workspace \
-           << parameters.platform >>/eclipse-temurin:11-jdk-jammy uname -a; ./gradlew --no-daemon -PmaxParallelForks=1 build
+           << parameters.platform >>/eclipse-temurin:11-jdk-jammy uname -a; ./gradlew --debug --no-daemon -PmaxParallelForks=1 build
       - run:
           command: mkdir ~/test-results
       - run:
