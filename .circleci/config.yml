@@ -10,7 +10,7 @@ jobs:
       _JAVA_OPTIONS: "-Xms512m -Xmx1g"
       DOCKER_CLI_EXPERIMENTAL: "enabled"
     working_directory: ~/workspace
-    machine:
+    docker:
       image: cimg/openjdk:11.0
     steps:
       - checkout
