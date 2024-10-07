@@ -12,6 +12,7 @@ jobs:
     working_directory: ~/workspace
     machine:
       image: ubuntu-2204:2024.05.1
+    resource_class: medium
     steps:
       - checkout
       - run: |
