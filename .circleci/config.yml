@@ -23,8 +23,8 @@ jobs:
            --name qemu-cross-<< parameters.platform >> \
            --mount type=bind,source=${PWD},target=/github_workspace \
            --workdir /github_workspace \
-           --cpus="4"
-           << parameters.platform >>/eclipse-temurin:11-jdk-jammy sh -c "uname -a; ./gradlew --no-daemon build"
+           --cpus="4" \
+           << parameters.platform >>/eclipse-temurin:11-jdk-jammy sh -c "nproc; ./gradlew --no-daemon build"
       - run:
           command: mkdir ~/test-results
       - run:
