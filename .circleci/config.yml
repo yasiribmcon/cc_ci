@@ -12,7 +12,7 @@ jobs:
     working_directory: ~/workspace
     machine:
       image: ubuntu-2204:2024.05.1
-    resource_class: medium
+    parallelism: 4
     steps:
       - checkout
       - run: |
@@ -24,7 +24,7 @@ jobs:
            --name qemu-cross-<< parameters.platform >> \
            --mount type=bind,source=${PWD},target=/github_workspace \
            --workdir /github_workspace \
-           << parameters.platform >>/eclipse-temurin:11-jdk-jammy sh -c "uname -a; ./gradlew --no-daemon -PmaxParallelForks=1 build"
+           << parameters.platform >>/eclipse-temurin:11-jdk-jammy sh -c "uname -a; ./gradlew --no-daemon build"
       - run:
           command: mkdir ~/test-results
       - run:
